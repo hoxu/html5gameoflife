@@ -5,6 +5,7 @@ var WIDTH = 800 / BLOCKSIZE; // canvasElement.width / BLOCKSIZE;
 var HEIGHT = 500 / BLOCKSIZE; // canvasElement.height / BLOCKSIZE;
 
 var grid = createNewGrid();
+var newGrid = createNewGrid();
 
 var running = true;
 var refreshInterval = setInterval(execute, 500);
@@ -16,7 +17,6 @@ function execute() {
 }
 
 function calculate() {
-	var newGrid = createNewGrid();
 	for(y = 0; y < grid.length; y++) {
 		for(x = 0; x < grid[y].length; x++) {
 			var cell = grid[y][x];
@@ -44,7 +44,9 @@ function calculate() {
 		}
 	}
 	// assign newgrid to grid
+	var tmp = grid;
 	grid = newGrid;
+	newGrid = tmp;
 }
 
 function createNewGrid() {
