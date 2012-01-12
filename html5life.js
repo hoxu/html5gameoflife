@@ -22,6 +22,13 @@ function dummydata() {
 	grid[3][2] = 1;
 	grid[3][3] = 1;
 	grid[3][4] = 1;
+
+	// glider
+	grid[8][5] = 1;
+	grid[8][6] = 1;
+	grid[8][7] = 1;
+	grid[7][7] = 1;
+	grid[6][6] = 1;
 }
 
 function calculate() {
