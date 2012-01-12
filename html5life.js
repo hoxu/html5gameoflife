@@ -54,7 +54,6 @@ function calculate() {
 	}
 	// assign newgrid to grid
 	grid = newGrid;
-	//console.log(newGrid);
 }
 
 function createNewGrid() {
@@ -84,12 +83,7 @@ function drawgrid() {
 }
 
 function toggleclick(e) {
-	//console.log('onclick: ' + e);
-	//console.log('x = ' + e.pageX);
-	
 	var canvas = document.getElementById('myCanvas');
-	//var left = canvas.offsetLeft;
-	//console.log('left = ' + left);
 
 	var canvasx = e.pageX - canvas.offsetLeft;
 	var canvasy = e.pageY - canvas.offsetTop;
@@ -104,15 +98,3 @@ function toggleclick(e) {
 	grid[gridy][gridx] = result;
 }
 
-/*
-setInterval(draw, 1000);
-function draw() {
-	var c=document.getElementById("myCanvas");
-	var ctx=c.getContext("2d");
-	ctx.fillStyle="#FF0000";
-	ctx.fillRect(0,0,50,50);
-	ctx.save();
-	ctx.translate(50,50);
-	ctx.save();
-}
-*/
