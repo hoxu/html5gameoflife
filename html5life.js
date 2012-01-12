@@ -15,12 +15,13 @@ var grid = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 ];
 
-setInterval(execute, 500);
+var running = true;
+var refreshInterval = setInterval(execute, 500);
 console.log('Javascript loaded');
 
 function execute() {
-	drawgrid();
 	calculate();
+	drawgrid();
 }
 
 function calculate() {
@@ -96,5 +97,19 @@ function toggleclick(e) {
 	var result = grid[gridy][gridx];
 	if (result == 1) { result = 0; } else { result = 1; }
 	grid[gridy][gridx] = result;
+
+	drawgrid();
+}
+
+function startstop() {
+	var ele = document.getElementById('startstop');
+	running = !running;
+	if (running) {
+		refreshInterval = setInterval(execute, 500);
+		ele.innerHTML = 'Stop';
+	} else {
+		clearInterval(refreshInterval);
+		ele.innerHTML = 'Start';
+	}
 }
 
