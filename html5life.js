@@ -1,19 +1,10 @@
-var BLOCKSIZE = 50;
-var WIDTH = 12;
-var HEIGHT = 10;
+//var canvasElement=document.getElementById("myCanvas");
 
-var grid = [
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-];
+var BLOCKSIZE = 10;
+var WIDTH = 800 / BLOCKSIZE; // canvasElement.width / BLOCKSIZE;
+var HEIGHT = 500 / BLOCKSIZE; // canvasElement.height / BLOCKSIZE;
+
+var grid = createNewGrid();
 
 var running = true;
 var refreshInterval = setInterval(execute, 500);
@@ -39,15 +30,14 @@ function calculate() {
 			if (y < HEIGHT-1) { count += grid[y+1][x]; }
 			if (x < WIDTH-1 && y < HEIGHT-1) { count += grid[y+1][x+1]; }
 
-			var isAlive = cell;
 			var result = 0;
-			if (isAlive == 1 && count < 2) {
+			if (cell == 1 && count < 2) {
 				result = 0;
-			} else if (isAlive && count > 3) {
+			} else if (cell && count > 3) {
 				result = 0;
-			} else if (isAlive && (count == 2 || count == 3) ) {
+			} else if (cell && (count == 2 || count == 3) ) {
 				result = 1;
-			} else if (!isAlive && count == 3) {
+			} else if (!cell && count == 3) {
 				result = 1;
 			}
 			newGrid[y][x] = result;
