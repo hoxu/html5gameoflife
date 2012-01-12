@@ -1,22 +1,11 @@
 <!DOCTYPE HTML>
 <html>
+<head>
+<script type="text/javascript" src="html5life.js"></script>
+</head>
 <body>
+
 <canvas id="myCanvas" width="500" height="500" style="background: lightgrey"></canvas>
-
-
-<script type="text/javascript">
-setInterval(draw, 1000);
-
-function draw() {
-	var c=document.getElementById("myCanvas");
-	var ctx=c.getContext("2d");
-	ctx.fillStyle="#FF0000";
-	ctx.fillRect(0,0,50,50);
-	ctx.save();
-	ctx.translate(50,50);
-	ctx.save();
-}
-</script>
 
 </body>
 </html>
