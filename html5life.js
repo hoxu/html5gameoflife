@@ -1,14 +1,15 @@
 //var canvasElement=document.getElementById("myCanvas");
 
-var BLOCKSIZE = 10;
+var BLOCKSIZE = 20;
 var WIDTH = 800 / BLOCKSIZE; // canvasElement.width / BLOCKSIZE;
-var HEIGHT = 500 / BLOCKSIZE; // canvasElement.height / BLOCKSIZE;
+var HEIGHT = 600 / BLOCKSIZE; // canvasElement.height / BLOCKSIZE;
+var INTERVAL = 150;
 
 var grid = createNewGrid();
 var newGrid = createNewGrid();
 
 var running = true;
-var refreshInterval = setInterval(execute, 500);
+var refreshInterval = setInterval(execute, INTERVAL);
 console.log('Javascript loaded');
 
 function execute() {
@@ -72,7 +73,7 @@ function drawgrid() {
 			ctx.fillRect(x*BLOCKSIZE, y*BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
 		}
 	}
-	ctx.save();
+	//ctx.save();
 }
 
 function toggleclick(e) {
@@ -97,7 +98,7 @@ function startstop() {
 	var ele = document.getElementById('startstop');
 	running = !running;
 	if (running) {
-		refreshInterval = setInterval(execute, 500);
+		refreshInterval = setInterval(execute, INTERVAL);
 		ele.innerHTML = 'Stop';
 	} else {
 		clearInterval(refreshInterval);
