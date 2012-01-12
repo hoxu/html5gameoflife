@@ -1,21 +1,21 @@
 var BLOCKSIZE = 50;
-var WIDTH = 10;
+var WIDTH = 12;
 var HEIGHT = 10;
 
 var grid = [
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-	[0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
-	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 ];
 
-setInterval(execute, 1000);
+setInterval(execute, 500);
 console.log('Javascript loaded');
 
 function execute() {
@@ -68,7 +68,7 @@ function createNewGrid() {
 function drawgrid() {
 	var c=document.getElementById("myCanvas");
 	var ctx=c.getContext("2d");
-	for (var y = 0; y < WIDTH; y++) {
+	for (var y = 0; y < HEIGHT; y++) {
 		for (var x = 0; x < WIDTH; x++) {
 			var life = grid[y][x];
 			
@@ -81,6 +81,27 @@ function drawgrid() {
 		}
 	}
 	ctx.save();
+}
+
+function toggleclick(e) {
+	//console.log('onclick: ' + e);
+	//console.log('x = ' + e.pageX);
+	
+	var canvas = document.getElementById('myCanvas');
+	//var left = canvas.offsetLeft;
+	//console.log('left = ' + left);
+
+	var canvasx = e.pageX - canvas.offsetLeft;
+	var canvasy = e.pageY - canvas.offsetTop;
+
+	var gridx = parseInt(canvasx / BLOCKSIZE);
+	var gridy = parseInt(canvasy / BLOCKSIZE);
+
+	console.log('click position = ' + gridx + ', ' + gridy);
+
+	var result = grid[gridy][gridx];
+	if (result == 1) { result = 0; } else { result = 1; }
+	grid[gridy][gridx] = result;
 }
 
 /*
