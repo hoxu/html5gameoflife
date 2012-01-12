@@ -29,6 +29,16 @@ function calculate() {
 		for(x = 0; x < grid[y].length; x++) {
 			var cell = grid[y][x];
 			var count = 0;
+			// TODO count
+			if (x > 0 && y > 0) { count += grid[y-1][x-1] }
+			if (y > 0) { count += grid[y-1][x] }
+			if (y > 0 && x < WIDTH-1) { count += grid[y-1][x+1] }
+			if (x > 0) { count += grid[y][x-1] }
+			if (x < WIDTH-1) { count += grid[y][x+1] }
+			if (x > 0 && y < HEIGHT-1) { count += grid[y+1][x-1] }
+			if (y < HEIGHT-1) { count += grid[y+1][x] }
+			if (x < WIDTH-1 && y < HEIGHT-1) { count += grid[y+1][x+1] }
+
 			boolean isAlive = cell == 1;
 			var result = 0;
 			if (isAlive && count < 2) {
@@ -43,6 +53,7 @@ function calculate() {
 			newGrid[y][x] = result;
 		}
 	}
+	// TODO assign newgrid to grid
 	console.log(newGrid);
 }
 
