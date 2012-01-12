@@ -7,6 +7,7 @@ var INTERVAL = 150;
 
 var grid = createNewGrid();
 var newGrid = createNewGrid();
+dummydata();
 
 var running = true;
 var refreshInterval = setInterval(execute, INTERVAL);
@@ -15,6 +16,12 @@ console.log('Javascript loaded');
 function execute() {
 	calculate();
 	drawgrid();
+}
+
+function dummydata() {
+	grid[3][2] = 1;
+	grid[3][3] = 1;
+	grid[3][4] = 1;
 }
 
 function calculate() {
@@ -54,6 +61,9 @@ function createNewGrid() {
 	var newGrid = new Array(HEIGHT);
 	for(i = 0; i < newGrid.length; i++) {
 		newGrid[i] = new Array(WIDTH);
+		for (var x = 0; x < WIDTH; x++) {
+			newGrid[i][x] = 0;
+		}
 	}
 	return newGrid;
 }
