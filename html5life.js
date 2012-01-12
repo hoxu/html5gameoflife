@@ -1,5 +1,6 @@
 var BLOCKSIZE = 50;
 var WIDTH = 10;
+var HEIGHT = 10;
 
 var grid = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -14,15 +15,52 @@ var grid = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-setInterval(drawgrid, 1000);
-console.log('lala');
+setInterval(execute, 1000);
+console.log('Javascript loaded');
+
+function execute() {
+	drawgrid();
+	calculate();
+}
+
+function calculate() {
+	var newGrid = createNewGrid();
+	for(y = 0; y < grid.length; y++) {
+		for(x = 0; x < grid[y].length; x++) {
+			var cell = grid[y][x];
+			var count = 0;
+			boolean isAlive = cell == 1;
+			var result = 0;
+			if (isAlive && count < 2) {
+				result = 0;
+			} else if (isAlive && count > 3) {
+				result = 0;
+			} else if (isAlive && (count == 2 || count == 3) ) {
+				result = 1;
+			} else if (!isAlive && count == 3) {
+				result = 1;
+			}
+			newGrid[y][x] = result;
+		}
+	}
+	console.log(newGrid);
+}
+
+function createNewGrid() {
+	var newGrid = new Array(HEIGHT);
+	for(i = 0; i < newGrid.length; i++) {
+		newGrid[i] = new Array(WIDTH);
+	}
+	return newGrid;
+}
 
 function drawgrid() {
 	var c=document.getElementById("myCanvas");
 	var ctx=c.getContext("2d");
-	for (x = 0; x < WIDTH; x++) {
-		for (y = 0; y < WIDTH; y++) {
-			var life = grid[x][y];
+	for (var y = 0; y < WIDTH; y++) {
+		for (var x = 0; x < WIDTH; x++) {
+			var life = grid[y][x];
+			
 			if (life == 0) {
 				ctx.fillStyle = "lightgrey";
 			} else {
